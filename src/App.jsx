@@ -1,8 +1,12 @@
+import { Outlet } from "react-router";
+import Navbar from "./components/Navbar/Navbar";
+
 function App() {
   return (
-    <main>
-      <h1>Shopping Cart</h1>
-    </main>
+    <>
+      <Navbar />
+      <Outlet />
+    </>
   );
 }
 
