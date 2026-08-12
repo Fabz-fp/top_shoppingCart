@@ -1,10 +1,15 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, cleanup } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
-import { describe, expect, test } from "vitest";
+import { afterEach, describe, expect, test } from "vitest";
+import userEvent from "@testing-library/user-event";
 import App from "./App";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
+
+afterEach(() => {
+  cleanup();
+});
 
 describe("Application routes", () => {
   function renderWithRouter(initialPath) {
@@ -47,6 +52,54 @@ describe("Application routes", () => {
     expect(
       screen.getByRole("heading", {
         name: /shopping cart/i,
+      }),
+    ).toBeInTheDocument();
+  });
+
+  test("user can navigate between pages", async () => {
+    const user = userEvent.setup();
+
+    renderWithRouter("/");
+
+    expect(
+      screen.getByRole("heading", {
+        name: /welcome to our shop/i,
+      }),
+    ).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("link", {
+        name: /shop/i,
+      }),
+    );
+
+    expect(
+      screen.getByRole("heading", {
+        name: /^shop$/i,
+      }),
+    ).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("link", {
+        name: /cart/i,
+      }),
+    );
+
+    expect(
+      screen.getByRole("heading", {
+        name: /shopping cart/i,
+      }),
+    ).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("link", {
+        name: /home/i,
+      }),
+    );
+
+    expect(
+      screen.getByRole("heading", {
+        name: /welcome to our shop/i,
       }),
     ).toBeInTheDocument();
   });
