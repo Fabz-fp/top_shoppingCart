@@ -25,6 +25,12 @@ describe("Navbar", () => {
     });
 
     test("links point to the correct pages", () => {
+                render(
+            <MemoryRouter>
+                <Navbar />
+            </MemoryRouter>,
+        );
+        
         expect(screen.getByRole("link", { name: /home/i })).toHaveAttribute(
             "href",
             "/",

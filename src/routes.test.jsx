@@ -1,15 +1,11 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
-import { afterEach, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
-
-afterEach(() => {
-  cleanup();
-});
 
 describe("Application routes", () => {
   function renderWithRouter(initialPath) {
@@ -69,7 +65,7 @@ describe("Application routes", () => {
 
     await user.click(
       screen.getByRole("link", {
-        name: /shop/i,
+        name: /^shop$/i,
       }),
     );
 
@@ -81,7 +77,7 @@ describe("Application routes", () => {
 
     await user.click(
       screen.getByRole("link", {
-        name: /cart/i,
+        name: /^cart$/i,
       }),
     );
 
@@ -93,7 +89,7 @@ describe("Application routes", () => {
 
     await user.click(
       screen.getByRole("link", {
-        name: /home/i,
+        name: /^home$/i,
       }),
     );
 
