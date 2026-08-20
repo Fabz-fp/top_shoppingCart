@@ -3,11 +3,9 @@ import { describe, expect, test } from "vitest";
 import Shop from "./Shop";
 
 describe("Shop", () => {
-    test("renders the shop page", () => {
-        render(<Shop />);
+  test("renders the shop page", () => {
+    render(<Shop />);
 
-        expect(
-            screen.getByRole("heading", { name: /shop/i }),
-        ).toBeInTheDocument();
-    });
+    expect(screen.getByRole("heading", { name: /shop/i })).toBeInTheDocument();
+  });
 });

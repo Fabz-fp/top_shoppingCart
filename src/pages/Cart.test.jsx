@@ -3,11 +3,11 @@ import { describe, expect, test } from "vitest";
 import Cart from "./Cart";
 
 describe("cart", () => {
-    test("renders the cart page", () => {
-        render(<Cart />);
+  test("renders the cart page", () => {
+    render(<Cart />);
 
-        expect(
-            screen.getByRole("heading", { name: /shopping cart/i }),
-        ).toBeInTheDocument();
-    });
+    expect(
+      screen.getByRole("heading", { name: /shopping cart/i }),
+    ).toBeInTheDocument();
+  });
 });

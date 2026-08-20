@@ -4,29 +4,29 @@ import Home from "./Home";
 import { MemoryRouter } from "react-router";
 
 describe("Home", () => {
-    test("renders the home page", () => {
-        render(
-            <MemoryRouter>
-                <Home />
-            </MemoryRouter>,
-        );
+  test("renders the home page", () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
 
-        expect(
-            screen.getByRole("heading", { name: /welcome to our shop/i }),
-        ).toBeInTheDocument();
-    });
+    expect(
+      screen.getByRole("heading", { name: /welcome to our shop/i }),
+    ).toBeInTheDocument();
+  });
 
-    test("renders a link to the shop", () => {
-        render(
-            <MemoryRouter>
-                <Home />
-            </MemoryRouter>,
-        );
+  test("renders a link to the shop", () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
 
-        expect(
-            screen.getByRole("link", {
-                name: /shop now/i,
-            }),
-        ).toHaveAttribute("href", "/shop");
-    });
+    expect(
+      screen.getByRole("link", {
+        name: /shop now/i,
+      }),
+    ).toHaveAttribute("href", "/shop");
+  });
 });
