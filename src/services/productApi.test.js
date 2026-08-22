@@ -24,4 +24,17 @@ describe("productApi", () => {
 
     expect(products).toEqual(mockProducts);
   });
+
+  test("throws an error when the API request fails", async () => {
+    globalThis.fetch = vi.fn(() =>
+      Promise.resolve({
+        ok: false,
+        status: 500,
+      }),
+    );
+
+    await expect(getProducts()).rejects.toThrow(
+      "Failed to fetch products",
+    );
+  });
 });
