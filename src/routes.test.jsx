@@ -3,9 +3,9 @@ import { MemoryRouter, Route, Routes } from "react-router";
 import { describe, expect, test } from "vitest";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
-import Home from "./pages/Home";
-import Shop from "./pages/Shop";
-import Cart from "./pages/Cart";
+import Home from "./pages/Home/Home";
+import Shop from "./pages/Shop/Shop";
+import Cart from "./pages/Cart/Cart";
 
 describe("Application routes", () => {
   function renderWithRouter(initialPath) {
