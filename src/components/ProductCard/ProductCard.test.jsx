@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
 import ProductCard from "./ProductCard";
 
@@ -37,5 +38,51 @@ describe("ProductCard", () => {
         name: /test product/i,
       }),
     ).toHaveAttribute("src", product.image);
+  });
+
+  test("starts with a quantity of 1", () => {
+    render(<ProductCard product={product} />);
+
+    expect(
+      screen.getByRole("spinbutton"),
+    ).toHaveValue(1);
+  });
+
+  test("increments the quantity", async () => {
+    const user = userEvent.setup();
+
+    render(<ProductCard product={product} />);
+
+    const input = screen.getByRole("spinbutton");
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /increase quantity/i,
+      }),
+    );
+
+    expect(input).toHaveValue(2);
+  });
+
+  test("decrements the quantity", async () => {
+    const user = userEvent.setup();
+
+    render(<ProductCard product={product} />);
+
+    const input = screen.getByRole("spinbutton");
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /increase quantity/i,
+      }),
+    );
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /decrease quantity/i,
+      }),
+    );
+
+    expect(input).toHaveValue(1);
   });
 });
