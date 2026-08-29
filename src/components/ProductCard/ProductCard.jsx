@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ProductCard({ product }) {
+function ProductCard({ product, onAddToCart }) {
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -49,7 +49,14 @@ function ProductCard({ product }) {
         >
           +
         </button>
-      </div>   
+      </div>
+
+      <button
+        type="button"
+        onClick={() => onAddToCart(product, quantity)}
+      >
+        Add To Cart
+      </button>
     </article>
   );
 }

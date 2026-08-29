@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import ProductCard from "./ProductCard";
 
 const product = {
@@ -97,5 +97,25 @@ describe("ProductCard", () => {
     await user.type(input, "5");
 
     expect(input).toHaveValue(5);
+  });
+
+  test("calls onAddToCart with the product and quantity", async () => {
+    const user = userEvent.setup();
+    const onAddToCart = vi.fn();
+
+    render(<ProductCard product={product} onAddToCart={onAddToCart} />);
+
+    const input = screen.getByRole("spinbutton");
+
+    await user.clear(input);
+    await user.type(input, "3");
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /add to cart/i,
+      }),
+    );
+
+    expect(onAddToCart).toHaveBeenCalledWith(product, 3);
   });
 });
