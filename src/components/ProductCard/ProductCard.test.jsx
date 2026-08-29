@@ -85,4 +85,17 @@ describe("ProductCard", () => {
 
     expect(input).toHaveValue(1);
   });
+
+  test("allows the user to manually change the quantity", async () => {
+    const user = userEvent.setup();
+
+    render(<ProductCard product={product} />);
+
+    const input = screen.getByRole("spinbutton");
+
+    await user.clear(input);
+    await user.type(input, "5");
+
+    expect(input).toHaveValue(5);
+  });
 });
