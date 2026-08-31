@@ -27,6 +27,16 @@ export function cartReducer(state, action) {
       ];
     }
 
+    case "INCREASE_ITEM":
+      return state.map((item) => 
+        item.id === action.payload
+          ? {
+            ...item,
+            quantity: item.quantity + 1,
+            }
+          : item,
+      );
+
     default:
       return state;
   }

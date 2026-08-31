@@ -62,4 +62,22 @@ describe("cartReducer", () => {
       },
     ]);
   });
+
+  test("increases an item's quantity", () => {
+    const state = [
+      {
+        id: 1,
+        title: "Test product",
+        price: 19.99,
+        quantity: 2,
+      },
+    ];
+
+    const newState = cartReducer(state, {
+      type: "INCREASE_ITEM",
+      payload: 1,
+    });
+
+    expect(newState[0].quantity).toBe(3);
+  });
 });
