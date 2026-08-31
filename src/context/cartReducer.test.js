@@ -90,6 +90,7 @@ describe("cartReducer", () => {
         quantity: 2,
       },
     ];
+
     const decreasedState = cartReducer(state, {
       type: "DECREASE_ITEM",
       payload: 1,
@@ -103,5 +104,36 @@ describe("cartReducer", () => {
     });
 
     expect(minimumState[0].quantity).toBe(1);
+  });
+
+  test("removes an item from the cart", () => {
+    const state = [
+      {
+        id: 1,
+        title: "Test product",
+        price: 19.99,
+        quantity: 2,
+      },
+      {
+        id: 2,
+        title: "Another product",
+        price: 24.99,
+        quantity: 1,
+      },
+    ];
+
+    const newState = cartReducer(state, {
+      type: "REMOVE_ITEM",
+      payload: 1,
+    });
+
+    expect(newState).toEqual([
+      {
+        id: 2,
+        title: "Another product",
+        price: 24.99,
+        quantity: 1,
+      },
+    ]);
   });
 });
