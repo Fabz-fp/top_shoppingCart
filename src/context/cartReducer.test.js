@@ -80,4 +80,28 @@ describe("cartReducer", () => {
 
     expect(newState[0].quantity).toBe(3);
   });
+
+  test("decreases an item's quantity but never below 1", () => {
+    const state = [
+      {
+        id: 1,
+        title: "Test product",
+        price: 19.99,
+        quantity: 2,
+      },
+    ];
+    const decreasedState = cartReducer(state, {
+      type: "DECREASE_ITEM",
+      payload: 1,
+    });
+
+    expect(decreasedState[0].quantity).toBe(1);
+
+    const minimumState = cartReducer(decreasedState, {
+      type: "DECREASE_ITEM",
+      payload: 1,
+    });
+
+    expect(minimumState[0].quantity).toBe(1);
+  });
 });
