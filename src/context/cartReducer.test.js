@@ -32,4 +32,34 @@ describe("cartReducer", () => {
       },
     ]);
   });
+
+  test("increases quantity when adding an existing item", () => {
+    const product = {
+      id: 1,
+      title: "Test product",
+      price: 19.99,
+    };
+
+    const state = [
+      {
+        ...product,
+        quantity: 2,
+      },
+    ];
+
+    const newState = cartReducer(state, {
+      type: "ADD_ITEM",
+      payload: {
+        product,
+        quantity: 3,
+      },
+    });
+
+    expect(newState).toEqual([
+      {
+        ...product,
+        quantity: 5,
+      },
+    ]);
+  });
 });
