@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import App from "./App";
 import { expect, test } from "vitest";
+import App from "./App";
 
-test("renders the navbar and the current page", () => {
+test("renders the navbar", () => {
   render(
     <MemoryRouter>
       <App />
