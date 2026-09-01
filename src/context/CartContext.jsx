@@ -17,11 +17,35 @@ export function CartProvider({ children }) {
     });
   }
 
+  function increaseItem(id) {
+    dispatch({
+      type: "INCREASE_ITEM",
+      payload: id,
+    });
+  }
+
+  function decreaseItem(id) {
+    dispatch({
+      type: "DECREASE_ITEM",
+      payload: id,
+    });
+  }
+
+  function removeItem(id) {
+    dispatch({
+      type: "REMOVE_ITEM",
+      payload: id,
+    });
+  }
+
   return (
     <CartContext.Provider
       value={{
         cart,
         addItem,
+        increaseItem,
+        decreaseItem,
+        removeItem,
       }}
     >
       {children}

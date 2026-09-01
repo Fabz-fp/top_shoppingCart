@@ -24,7 +24,7 @@ describe("CartContext", () => {
 
     act(() => {
       result.current.addItem(product, 2);
-    })
+    });
 
     expect(result.current.cart).toEqual([
       {
@@ -32,5 +32,62 @@ describe("CartContext", () => {
         quantity: 2,
       },
     ]);
+  });
+
+  test("increases an item's quantity", () => {
+    const product = {
+      id: 1,
+      title: "Test Product",
+      price: 19.99,
+    };
+
+    const { result } = renderHook(() => useCart(), {
+      wrapper: CartProvider,
+    });
+
+    act(() => {
+      result.current.addItem(product, 2);
+      result.current.increaseItem(1);
+    });
+
+    expect(result.current.cart[0].quantity).toBe(3);
+  });
+
+  test("decreases an item's quantity", () => {
+    const product = {
+      id: 1,
+      title: "Test Product",
+      price: 19.99,
+    };
+
+    const { result } = renderHook(() => useCart(), {
+      wrapper: CartProvider,
+    });
+
+    act(() => {
+      result.current.addItem(product, 2);
+      result.current.decreaseItem(1);
+    });
+
+    expect(result.current.cart[0].quantity).toBe(1);
+  });
+
+  test("removes an item", () => {
+    const product = {
+      id: 1,
+      title: "Test Product",
+      price: 19.99,
+    };
+
+    const { result } = renderHook(() => useCart(), {
+      wrapper: CartProvider,
+    });
+
+    act(() => {
+      result.current.addItem(product, 2)
+      result.current.removeItem(1);
+    });
+
+    expect(result.current.cart).toEqual([]);
   });
 });
