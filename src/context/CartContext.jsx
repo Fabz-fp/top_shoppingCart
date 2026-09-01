@@ -7,8 +7,23 @@ const CartContext = createContext(null);
 export function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, []);
 
+  function addItem(product, quantity) {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: {
+        product,
+        quantity,
+      },
+    });
+  }
+
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addItem,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
