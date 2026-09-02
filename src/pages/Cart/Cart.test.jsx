@@ -73,12 +73,6 @@ describe("cart", () => {
           price: 10,
           quantity: 2,
         },
-        {
-          id: 2,
-          title: "Another product",
-          price: 20,
-          quantity: 3,
-        },
       ],
     });
 
@@ -86,5 +80,45 @@ describe("cart", () => {
 
     expect(screen.getByText("$10.00")).toBeInTheDocument();
     expect(screen.getByText("$20.00")).toBeInTheDocument();
+  });
+
+  test("displays the subtotal for each cart item", () => {
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Test product",
+          price: 10,
+          quantity: 2,
+        },
+      ],
+    });
+
+    render(<Cart />);
+
+    expect(screen.getByText("$20.00")).toBeInTheDocument();
+  });
+
+  test("displays the total for multiple cart items", () => {
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Test product one",
+          price: 10,
+          quantity: 2,
+        },
+        {
+          id: 2,
+          title: "Test product two",
+          price: 15,
+          quantity: 3,
+        },
+      ],
+    });
+
+    render(<Cart />);
+
+    expect(screen.getByText("Total: $65.00")).toBeInTheDocument();
   });
 });

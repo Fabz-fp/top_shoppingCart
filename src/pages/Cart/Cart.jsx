@@ -12,6 +12,11 @@ function Cart() {
     );
   }
 
+  const cartTotal = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
+
   return (
     <main>
       <h1>Shopping Cart</h1>
@@ -21,8 +26,11 @@ function Cart() {
           <h2>{item.title}</h2>
           <p>Quantity: {item.quantity}</p>
           <p>${item.price.toFixed(2)}</p>
+          <p>${((item.price * item.quantity).toFixed(2))}</p>
         </article>
       ))}
+
+      <p>Total: ${cartTotal.toFixed(2)}</p>
     </main>
   );
 }
