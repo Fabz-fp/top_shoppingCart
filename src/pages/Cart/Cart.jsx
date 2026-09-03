@@ -1,7 +1,7 @@
 import { useCart } from "../../context/CartContext";
 
 function Cart() {
-  const { cart } = useCart();
+  const { cart, removeItem } = useCart();
 
   if (cart.length === 0) {
     return (
@@ -27,6 +27,13 @@ function Cart() {
           <p>Quantity: {item.quantity}</p>
           <p>${item.price.toFixed(2)}</p>
           <p>${((item.price * item.quantity).toFixed(2))}</p>
+
+          <button
+            type="button"
+            onClick={() => removeItem(item.id)}
+          >
+            Remove
+          </button>
         </article>
       ))}
 

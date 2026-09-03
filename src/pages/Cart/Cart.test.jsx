@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import Cart from "./Cart";
 import { useCart } from "../../context/CartContext";
+import userEvent from "@testing-library/user-event";
 
 vi.mock("../../context/CartContext", () => ({
   useCart: vi.fn(),
@@ -120,5 +121,32 @@ describe("cart", () => {
     render(<Cart />);
 
     expect(screen.getByText("Total: $65.00")).toBeInTheDocument();
+  });
+
+  test("removes an item from the cart", async () => {
+    const user = userEvent.setup();
+    const removeItem = vi.fn();
+
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Test product",
+          price: 10,
+          quantity: 2,
+        },
+      ],
+      removeItem,
+    });
+
+    render(<Cart />);
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /remove/i,
+      }),
+    );
+
+    expect(removeItem).toHaveBeenCalledWith(1);
   });
 });
