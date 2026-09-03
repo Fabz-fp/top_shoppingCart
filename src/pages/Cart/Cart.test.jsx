@@ -149,4 +149,58 @@ describe("cart", () => {
 
     expect(removeItem).toHaveBeenCalledWith(1);
   });
+
+  test("increases the quantity of a cart item", async () => {
+    const user = userEvent.setup();
+    const increaseItem = vi.fn();
+
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Test product",
+          price: 10,
+          quantity: 2,
+        },
+      ],
+      increaseItem,
+    });
+
+    render(<Cart />);
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /increase/i,
+      }),
+    );
+
+    expect(increaseItem).toHaveBeenCalledWith(1);
+  });
+
+  test("decreases the quantity of a cart item", async () => {
+    const user = userEvent.setup();
+    const decreaseItem = vi.fn();
+
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Test product",
+          price: 10,
+          quantity: 2,
+        },
+      ],
+      decreaseItem,
+    });
+
+    render(<Cart />);
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /decrease/i,
+      }),
+    );
+
+    expect(decreaseItem).toHaveBeenCalledWith(1);
+  });
 });

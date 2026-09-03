@@ -77,7 +77,7 @@ describe("Application routes", () => {
 
     await user.click(
       screen.getByRole("link", {
-        name: /^cart$/i,
+        name: /cart/i,
       }),
     );
 
