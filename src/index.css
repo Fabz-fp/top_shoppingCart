@@ -24,3 +24,33 @@ nav a:hover {
   text-decoration: underline;
   transform: rotate(-5deg);
 }
+
+/* HOME PAGE*/
+main h1 {
+  text-align: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+}
+main p {
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+  line-height: 1.6;
+}
+main a {
+  font-size: 1.4rem;
+  display: block;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #e8e8e8;
+  color: #e8e8e8;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+main a:hover {
+  text-decoration: underline;
+  transform: rotate(-5deg);
+}
