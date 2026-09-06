@@ -203,4 +203,29 @@ describe("cart", () => {
 
     expect(decreaseItem).toHaveBeenCalledWith(1);
   });
+
+  test("displays the image of each cart item", () => {
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Test product",
+          price: 10,
+          quantity: 2,
+          image: "https://example.com/product.jpg",
+        },
+      ],
+    });
+
+    render(<Cart />);
+
+    expect(
+      screen.getByRole("img", {
+        name: /test product/i,
+      }),
+    ).toHaveAttribute(
+      "src",
+      "https://example.com/product.jpg",
+    );
+  });
 });
