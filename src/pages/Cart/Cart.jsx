@@ -61,6 +61,10 @@ function Cart() {
       ))}
 
       <p>Total: ${cartTotal.toFixed(2)}</p>
+
+      <button type="button">
+        Checkout
+      </button>
     </main>
   );
 }

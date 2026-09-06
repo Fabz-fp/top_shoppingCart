@@ -253,4 +253,23 @@ describe("cart", () => {
       screen.getByText("Total items: 5"),
     ).toBeInTheDocument();
   });
+
+  test("displays a checkout button", () => {
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Test product",
+          price: 10,
+          quantity: 2,
+        },
+      ],
+    });
+
+    render(<Cart />);
+
+    expect(
+      screen.getByRole("button", { name: /checkout/i }),
+    ).toBeInTheDocument();
+  });
 });
