@@ -21,13 +21,17 @@ function Cart() {
     <main>
       <h1>Shopping Cart</h1>
 
+      <p>
+        Total items: {cart.reduce((total, item) => total + item.quantity, 0,)}
+      </p>
+
       {cart.map((item) => (
         <article key={item.id}>
           <img
             src={item.image}
             alt={item.title}
           />
-          
+
           <h2>{item.title}</h2>
           <p>Quantity: {item.quantity}</p>
           <p>${item.price.toFixed(2)}</p>

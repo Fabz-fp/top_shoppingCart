@@ -228,4 +228,29 @@ describe("cart", () => {
       "https://example.com/product.jpg",
     );
   });
+
+  test("displays the cart item count", () => {
+    useCart.mockReturnValue({
+      cart: [
+        {
+          id: 1,
+          title: "Product one",
+          price: 10,
+          quantity: 2,
+        },
+        {
+          id: 2,
+          title: "Product two",
+          price: 15,
+          quantity: 3,
+        },
+      ],
+    });
+
+    render(<Cart />);
+
+    expect(
+      screen.getByText("Total items: 5"),
+    ).toBeInTheDocument();
+  });
 });
