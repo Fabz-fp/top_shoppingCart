@@ -28,7 +28,7 @@ function Shop() {
     <main>
       <h1>Shop</h1>
 
-      <div>
+      <div className="product-grid">
         {products.map((product) => (
           <ProductCard 
             key={product.id}
