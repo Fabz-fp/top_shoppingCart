@@ -26,7 +26,7 @@ function Cart() {
       </p>
 
       {cart.map((item) => (
-        <article key={item.id}>
+        <article key={item.id} className="cart-item">
           <img
             src={item.image}
             alt={item.title}
@@ -34,37 +34,42 @@ function Cart() {
 
           <h2>{item.title}</h2>
           <p>Quantity: {item.quantity}</p>
-          <p>${item.price.toFixed(2)}</p>
-          <p>${((item.price * item.quantity).toFixed(2))}</p>
+          <p>Price: ${item.price.toFixed(2)}</p>
+          <p>Sub Total: ${((item.price * item.quantity).toFixed(2))}</p>
 
-          <button
-            type="button"
-            onClick={() => increaseItem(item.id)}
-          >
-            Increase
-          </button>
+          <div className="cart-actions">
+            <button
+              type="button"
+              onClick={() => increaseItem(item.id)}
+            >
+              Increase
+            </button>
 
-          <button
-            type="button"
-            onClick={() => decreaseItem(item.id)}
-          >
-            Decrease
-          </button>
+            <button
+              type="button"
+              onClick={() => decreaseItem(item.id)}
+            >
+              Decrease
+            </button>
 
-          <button
-            type="button"
-            onClick={() => removeItem(item.id)}
-          >
-            Remove
-          </button>
+            <button
+              type="button"
+              onClick={() => removeItem(item.id)}
+            >
+              Remove
+            </button>
+          </div>
+          
         </article>
       ))}
 
-      <p>Total: ${cartTotal.toFixed(2)}</p>
+      <div className="total-container">
+        <p className="cart-total">Total: ${cartTotal.toFixed(2)}</p>
 
-      <button type="button">
-        Checkout
-      </button>
+        <button type="button" className="checkout">
+          Checkout
+        </button>
+      </div>
     </main>
   );
 }
