@@ -79,8 +79,7 @@ describe("cart", () => {
 
     render(<Cart />);
 
-    expect(screen.getByText("$10.00")).toBeInTheDocument();
-    expect(screen.getByText("$20.00")).toBeInTheDocument();
+    expect(screen.getByText("Price: $10.00")).toBeInTheDocument();
   });
 
   test("displays the subtotal for each cart item", () => {
@@ -97,7 +96,7 @@ describe("cart", () => {
 
     render(<Cart />);
 
-    expect(screen.getByText("$20.00")).toBeInTheDocument();
+    expect(screen.getByText("Sub Total: $20.00")).toBeInTheDocument();
   });
 
   test("displays the total for multiple cart items", () => {

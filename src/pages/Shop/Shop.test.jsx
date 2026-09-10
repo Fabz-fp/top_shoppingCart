@@ -28,7 +28,7 @@ const mockProducts = [
     price: 15,
     image: "https://example.com/two.jpg",
   },
-]
+];
 
 beforeEach(() => {
   useCart.mockReturnValue({
