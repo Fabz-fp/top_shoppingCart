@@ -37,6 +37,7 @@ main p {
   margin: 2rem auto;
   max-width: 600px;
   line-height: 1.6;
+  font-size: 1.2rem;
 }
 main a {
   font-size: 1.4rem;
@@ -53,6 +54,9 @@ main a {
 main a:hover {
   text-decoration: underline;
   transform: rotate(-5deg);
+}
+main > h1 {
+  text-shadow: 3px 3px 0 #555;
 }
 
 /* SHOP */
@@ -120,6 +124,13 @@ main a:hover {
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
+}
+.product-grid article {
+  transition: transform 0.2s ease;
+}
+
+.product-grid article:hover {
+  transform: rotate(-1deg);
 }
 
 /* CART */
