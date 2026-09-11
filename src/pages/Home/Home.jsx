@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useProducts } from "../../hooks/useProducts";
 import { useCart } from "../../context/CartContext";
+import { getRandomProducts } from "../../utils/getRandomProducts";
 
 function Home() {
   const { products } = useProducts();
@@ -19,7 +20,7 @@ function Home() {
       <Link to="/shop">Shop Now</Link>
 
       <div className="home-products">
-        {products.slice(0, 3).map((product) => (
+        {getRandomProducts(products, 3).map((product) => (
           <ProductCard
             key={product.id}
             product={product}
