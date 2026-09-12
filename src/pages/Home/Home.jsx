@@ -19,6 +19,8 @@ function Home() {
 
       <Link to="/shop">Shop Now</Link>
 
+      <h2>Featured Products</h2>
+      
       <div className="home-products">
         {getRandomProducts(products, 3).map((product) => (
           <ProductCard
