@@ -1,12 +1,10 @@
 import { Link } from "react-router";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import FeaturedProduct from "../../components/FeaturedProduct/FeaturedProduct";
 import { useProducts } from "../../hooks/useProducts";
-import { useCart } from "../../context/CartContext";
 import { getRandomProducts } from "../../utils/getRandomProducts";
 
 function Home() {
   const { products } = useProducts();
-  const { addItem } = useCart();
 
   return (
     <main>
@@ -23,10 +21,9 @@ function Home() {
       
       <div className="home-products">
         {getRandomProducts(products, 3).map((product) => (
-          <ProductCard
+          <FeaturedProduct
             key={product.id}
             product={product}
-            onAddToCart={addItem}
           />
         ))}
       </div>
