@@ -118,4 +118,24 @@ describe("ProductCard", () => {
 
     expect(onAddToCart).toHaveBeenCalledWith(product, 3);
   });
+
+  test("expands the description when Read More is clicked", async () => {
+    const user = userEvent.setup();
+
+    render(<ProductCard product={product} />);
+
+    const description = screen.getByText(
+      /a test product description/i,
+    );
+
+    expect(description).toHaveClass("description-collapsed");
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /read more/i,
+      }),
+    );
+
+    expect(description).toHaveClass("description-expanded");
+  });
 });

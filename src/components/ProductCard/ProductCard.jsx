@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function ProductCard({ product, onAddToCart }) {
   const [quantity, setQuantity] = useState(1);
+  const [showDescription, setShowDescription] = useState(false);
 
   return (
     <article>
@@ -12,7 +13,16 @@ function ProductCard({ product, onAddToCart }) {
 
       <h2>{product.title}</h2>
 
-      <p>{product.description}</p>
+      <p className={showDescription ? "description-expanded" : "description-collapsed"}>
+        {product.description}
+      </p>
+
+      <button
+        type="button"
+        onClick={() => setShowDescription((current) => !current)}
+      >
+        {showDescription ? "Read Less" : "Read More"}
+      </button>
 
       <p>${product.price.toFixed(2)}</p>
 
