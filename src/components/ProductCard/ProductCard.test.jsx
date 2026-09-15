@@ -138,4 +138,17 @@ describe("ProductCard", () => {
 
     expect(description).toHaveClass("description-expanded");
   });
+
+  test("does not allow a quantity below 1", async () => {
+    const user = userEvent.setup();
+
+    render(<ProductCard product={product} />);
+
+    const input = screen.getByRole("spinbutton");
+
+    await user.clear(input);
+    await user.type(input, "0");
+
+    expect(input).toHaveValue(1);
+  });
 });

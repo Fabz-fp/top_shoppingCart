@@ -43,9 +43,16 @@ function ProductCard({ product, onAddToCart }) {
           type="number"
           min="1"
           value={quantity}
-          onChange={(event) =>
-            setQuantity(Number(event.target.value))
-          }
+          onChange={(event) => {
+            const value = Number(event.target.value);
+
+            if (event.target.value === "") {
+              setQuantity("");
+              return;
+            }
+
+            setQuantity(Math.max(1, value));
+          }}
         />
 
         <button
@@ -63,7 +70,11 @@ function ProductCard({ product, onAddToCart }) {
 
       <button
         type="button"
-        onClick={() => onAddToCart(product, quantity)}
+        onClick={() => {
+          if (quantity < 1) return;
+
+          onAddToCart(product, quantity);
+        }}
       >
         Add To Cart
       </button>
