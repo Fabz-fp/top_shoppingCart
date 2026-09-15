@@ -151,4 +151,29 @@ describe("ProductCard", () => {
 
     expect(input).toHaveValue(1);
   });
+
+  test("resets quantity to 1 after adding to cart", async () => {
+    const user = userEvent.setup();
+    const onAddToCart = vi.fn();
+
+    render(
+      <ProductCard
+        product={product}
+        onAddToCart={onAddToCart}
+      />,
+    );
+
+    const input = screen.getByRole("spinbutton");
+
+    await user.clear(input);
+    await user.type(input, "5");
+
+    await user.click(
+      screen.getByRole("button", {
+        name: /add to cart/i,
+      }),
+    );
+
+    expect(input).toHaveValue(1);
+  });
 });

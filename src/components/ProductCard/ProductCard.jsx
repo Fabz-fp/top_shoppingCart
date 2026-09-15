@@ -71,9 +71,13 @@ function ProductCard({ product, onAddToCart }) {
       <button
         type="button"
         onClick={() => {
-          if (quantity < 1) return;
+          if (quantity < 1) {
+            setQuantity(1);
+            return;
+          }
 
           onAddToCart(product, quantity);
+          setQuantity(1);
         }}
       >
         Add To Cart
