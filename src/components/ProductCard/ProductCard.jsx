@@ -42,6 +42,7 @@ function ProductCard({ product, onAddToCart }) {
         <input
           type="number"
           min="1"
+          aria-label="Quantity"
           value={quantity}
           onChange={(event) => {
             const value = Number(event.target.value);

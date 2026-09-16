@@ -176,4 +176,14 @@ describe("ProductCard", () => {
 
     expect(input).toHaveValue(1);
   });
+
+  test("has a label for the quantity input", () => {
+    render(<ProductCard product={product} />);
+
+    expect(
+      screen.getByRole("spinbutton", {
+        name: /quantity/i,
+      }),
+    ).toBeInTheDocument();
+  });
 });
