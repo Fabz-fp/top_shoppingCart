@@ -5,13 +5,13 @@ function ProductCard({ product, onAddToCart }) {
   const [showDescription, setShowDescription] = useState(false);
 
   return (
-    <article>
+    <article aria-labelledby={`product-${product.id}`}>
       <img
         src={product.image}
         alt={product.title}
       />
 
-      <h2>{product.title}</h2>
+      <h2 id={`product-${product.id}`}>{product.title}</h2>
 
       <p className={showDescription ? "description-expanded" : "description-collapsed"}>
         {product.description}

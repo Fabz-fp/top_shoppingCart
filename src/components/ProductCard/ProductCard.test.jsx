@@ -186,4 +186,14 @@ describe("ProductCard", () => {
       }),
     ).toBeInTheDocument();
   });
+
+  test("product card has an accessible name", () => {
+    render(<ProductCard product={product} />);
+
+    expect(
+      screen.getByRole("article", {
+        name: /test product/i,
+      }),
+    ).toBeInTheDocument();
+  });
 });
