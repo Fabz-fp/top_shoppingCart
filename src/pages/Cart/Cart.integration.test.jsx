@@ -84,3 +84,38 @@ test("does not decrease a cart item's quantity below 1", async () => {
     screen.getByText(/quantity: 1/i),
   ).toBeInTheDocument();
 });
+
+test("removes an item from the cart", async () => {
+  const user = userEvent.setup();
+
+  render(
+    <CartProvider>
+      <AddProduct />
+      <Cart />
+    </CartProvider>,
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /add product/i,
+    }),
+  );
+
+  expect(
+    screen.getByRole("heading", {
+      name: /test product/i,
+    }),
+  ).toBeInTheDocument();
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /remove/i,
+    }),
+  );
+
+  expect(
+    screen.queryByRole("heading", {
+      name: /test product/i,
+    }),
+  ).not.toBeInTheDocument();
+});
