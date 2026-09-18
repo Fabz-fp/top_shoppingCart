@@ -3,6 +3,8 @@ import userEvent from "@testing-library/user-event";
 import { expect, test } from "vitest";
 import Cart from "./Cart";
 import { CartProvider, useCart } from "../../context/CartContext";
+import Navbar from "../../components/Navbar/Navbar";
+import { MemoryRouter } from "react-router";
 
 function AddProduct() {
   const { addItem } = useCart();
@@ -118,4 +120,62 @@ test("removes an item from the cart", async () => {
       name: /test product/i,
     }),
   ).not.toBeInTheDocument();
+});
+
+test("updates the cart total when quantity changes", async () => {
+  const user = userEvent.setup();
+
+  render(
+    <CartProvider>
+      <AddProduct />
+      <Cart />
+    </CartProvider>,
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /add product/i,
+    }),
+  );
+
+  expect(
+    screen.getByText("Total: $10.00"),
+  ).toBeInTheDocument();
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /increase/i,
+    }),
+  );
+
+  expect(
+    screen.getByText("Total: $20.00"),
+  ).toBeInTheDocument();
+});
+
+test("updates the Navbar cart count when a product is added", async () => {
+  const user = userEvent.setup();
+
+  render(
+    <MemoryRouter>
+      <CartProvider>
+        <AddProduct />
+        <Navbar />
+      </CartProvider>
+    </MemoryRouter>,
+  );
+
+  expect(
+    screen.getByRole("link", { name: /cart \(0\)/i }),
+  ).toBeInTheDocument();
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /add product/i,
+    }),
+  );
+
+  expect(
+    screen.getByRole("link", { name: /cart \(1\)/i }),
+  ).toBeInTheDocument();
 });
