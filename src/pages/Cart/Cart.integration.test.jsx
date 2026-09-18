@@ -57,3 +57,30 @@ test("increases the quantity of a cart item", async () => {
     screen.getByText(/quantity: 2/i),
   ).toBeInTheDocument();
 });
+
+test("does not decrease a cart item's quantity below 1", async () => {
+  const user = userEvent.setup();
+
+  render(
+    <CartProvider>
+      <AddProduct />
+      <Cart />
+    </CartProvider>,
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /add product/i,
+    }),
+  );
+
+  await user.click(
+    screen.getByRole("button", {
+      name: /decrease/i,
+    }),
+  );
+
+  expect(
+    screen.getByText(/quantity: 1/i),
+  ).toBeInTheDocument();
+});
