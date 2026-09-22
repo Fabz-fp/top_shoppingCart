@@ -27,39 +27,43 @@ function Cart() {
 
       {cart.map((item) => (
         <article key={item.id} className="cart-item">
-          <img
-            src={item.image}
-            alt={item.title}
-          />
+          <div className="cart-item-main">
+            <img
+              src={item.image}
+              alt={item.title}
+            />
+
+            <div className="cart-item-info">
+              <p>Quantity: {item.quantity}</p>
+              <p>Price: ${item.price.toFixed(2)}</p>
+              <p>Sub Total: ${(item.price * item.quantity).toFixed(2)}</p>
+
+              <div className="cart-actions">
+                <button
+                  type="button"
+                  onClick={() => increaseItem(item.id)}
+                >
+                  Increase
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => decreaseItem(item.id)}
+                >
+                  Decrease
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => removeItem(item.id)}
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
 
           <h2>{item.title}</h2>
-          <p>Quantity: {item.quantity}</p>
-          <p>Price: ${item.price.toFixed(2)}</p>
-          <p>Sub Total: ${((item.price * item.quantity).toFixed(2))}</p>
-
-          <div className="cart-actions">
-            <button
-              type="button"
-              onClick={() => increaseItem(item.id)}
-            >
-              Increase
-            </button>
-
-            <button
-              type="button"
-              onClick={() => decreaseItem(item.id)}
-            >
-              Decrease
-            </button>
-
-            <button
-              type="button"
-              onClick={() => removeItem(item.id)}
-            >
-              Remove
-            </button>
-          </div>
-          
         </article>
       ))}
 
