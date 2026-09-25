@@ -1,16 +1,56 @@
-# React + Vite
+# React Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive shopping cart application built with React as part of The Odin Project React curriculum.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[Live Demo](URL)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse products fetched from the Fake Store API
+- View featured products on the home page
+- Add products to the cart with a chosen quantity
+- Increase and decrease cart item quantities
+- Remove products from the cart
+- View individual item prices and subtotals
+- View the total cost of the cart
+- Live cart item count in the navigation
+- Read More / Read Less product descriptions
+- Responsive layout for desktop and mobile
+- Loading and error states when fetching products
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- React Router
+- React Context
+- `useReducer`
+- React Testing Library
+- Vitest
+- CSS
+- Fake Store API
+- pnpm
+
+## Getting Started
+
+Clone the repository and install the dependencies:
+
+```bash
+pnpm install
+
+Start the development server:
+
+```bash
+pnpm run dev
+
+Create production build:
+
+```bash
+pnpm run build
+
+The project includes unit and integration tests:
+
+```bash
+pnpm exec vitest --run
