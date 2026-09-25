@@ -39,18 +39,22 @@ Clone the repository and install the dependencies:
 
 ```bash
 pnpm install
+```
 
 Start the development server:
 
 ```bash
 pnpm run dev
+```
 
 Create production build:
 
 ```bash
 pnpm run build
+```
 
 The project includes unit and integration tests:
 
 ```bash
 pnpm exec vitest --run
+```
