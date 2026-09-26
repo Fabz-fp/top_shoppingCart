@@ -4,7 +4,7 @@ A responsive shopping cart application built with React as part of The Odin Proj
 
 ## Live Demo
 
-[Live Demo](URL)
+[Live Demo](https://top-shoppingcartffp.netlify.app)
 
 ## Features
 
